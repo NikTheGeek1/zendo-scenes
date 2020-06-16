@@ -497,6 +497,7 @@ $("#done_debrief").click(function(){
 goto_debrief = function () {
   //$("#ins_1").hide();
   $("#game").hide();
+  $("#images-div").hide();
   $('#waiting_area').hide();
   $("#debrief").show();
   socket.emit("go-to-debrief");
