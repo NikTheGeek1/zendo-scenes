@@ -163,7 +163,8 @@ $(document).ready(function(){
     document.getElementById('images-'+userX).style.display = "block";// we need to momentarily display it before drawing into it because it doesn't work if it is hidden
 
     other_selected = data.selected;
-    otherIframeContent.draw_generalisations(data.trialdata, data.selected, data.posit_ix, 'other-image-'+userX);
+    other_data = data.trialdata;
+    otherIframeContent.draw_generalisations(data.trialdata, false, 'other-image-'+userX);
 
     if(who_finished.length == 1){
       // here will enter only the guy who finishes SECOND

@@ -1308,7 +1308,7 @@ function pasteScreenShot(trialdata) {
   var youIframeContent = (youIframe.contentWindow || youIframe.contentDocument);
   parent.document.getElementById('images-'+user).style.display = "block";
   parent.document.getElementById('images-div').style.display = "block"; // we need to momentarily display it before drawing into it because it doesn't work if it is hidden
-  youIframeContent.draw_generalisations(trialdata, selected, posit_ix, 'you-image-'+user);
+  youIframeContent.draw_generalisations(trialdata, false, 'you-image-'+user);
   parent.document.getElementById('images-div').style.display = "none";
   parent.document.getElementById(user+"-other-name").innerHTML = user_OTHERfinished; // this is the name of the user2
 
