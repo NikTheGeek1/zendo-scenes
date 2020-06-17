@@ -428,15 +428,6 @@ function NextTest() {
 
         let t1YPosition = 0.4;
 
-        t1Posterior = new TextField();
-        t1Posterior.selectable = false; // default is true
-        t1Posterior.setTextFormat(f4Posterior);
-        t1Posterior.text = "Ticked are your previous choices.";
-        t1Posterior.width = t1Posterior.textWidth;
-        t1Posterior.height = t1Posterior.textHeight;
-        stage.addChild(t1Posterior);
-        t1Posterior.x = stage.stageWidth / 2 - t1Posterior.textWidth / 2;
-        t1Posterior.y = stage.stageHeight * 0.445;
 
         t1 = new TextField();
         t1.selectable = false; // default is true
@@ -1309,7 +1300,15 @@ function Continue(e) {
     // paste screenshot to the YOU side of the user
     pasteScreenShot(trialdata);
 
-
+    t1Posterior = new TextField();
+    t1Posterior.selectable = false; // default is true
+    t1Posterior.setTextFormat(f4Posterior);
+    t1Posterior.text = "Ticked are your previous choices.";
+    t1Posterior.width = t1Posterior.textWidth;
+    t1Posterior.height = t1Posterior.textHeight;
+    stage.addChild(t1Posterior);
+    t1Posterior.x = stage.stageWidth / 2 - t1Posterior.textWidth / 2;
+    t1Posterior.y = stage.stageHeight * 0.445;
     // destroy  the upper pics and removing the old overlay and create a new one
     //preparingForPosterior();
 

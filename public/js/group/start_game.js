@@ -43,6 +43,7 @@ function StartIframe() {
 
 
 function StartIframe2() {
+  rules_idx_in_zendo_cases = [0, 2, 3, 4, 5];
 
   //rand_trial = Math.floor(Math.random()*9);
   //rand_trial = trials_order[Math.floor(Math.random()*trials_order.length)];
@@ -82,7 +83,7 @@ function StartIframe2() {
     '&#8226 Type your answer (at least 15 characters) in the box below to continue<br>'
   //Prep data
   examples = zendo_cases[rules_idx_in_zendo_cases[rand_trial]].t.slice(0, 1);
-  test_cases = zendo_cases[rules_idx_in_zendo_cases[rand_trial]].t.slice(1).concat(zendo_cases[rand_trial].f.slice(1));
+  test_cases = zendo_cases[rules_idx_in_zendo_cases[rand_trial]].t.slice(1).concat(zendo_cases[rules_idx_in_zendo_cases[rand_trial]].f.slice(1));
 
   // start iframe from here if this is not the first trial (if it's the first trial, iframe starts from groupchat)
   trial_num = (5 - trials_order.length);
