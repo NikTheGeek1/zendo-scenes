@@ -2,14 +2,15 @@
 function StartIframe() {
   // rules = ["Rule1", "Rule2", "Rule3", "Rule4", "Rule5", "Rule6", "Rule7", "Rule8", "Rule9", "Rule10"];
   // rule_names = ['Zeta' ,'Phi' ,'Upsilon' ,'Iota' ,'Kappa' ,'Omega' ,'Mu' ,'Nu' ,'Xi', 'Psi'];
-
   // trials_order = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
+  
   rules = ["Rule1", "Rule3", "Rule4", "Rule5", "Rule6"];
   rule_names = ['Zeta', 'Upsilon', 'Iota', 'Kappa', 'Omega'];
-
+  
   trials_order = [0, 1, 2, 3, 4];
   trials_order = _.shuffle(trials_order);
+  rules_idx_in_zendo_cases = [0, 2, 3, 4, 5];
 
 
   rand_counter_order = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
@@ -80,8 +81,8 @@ function StartIframe2() {
     '&#8226 If you cannot think of any rule that could be true, please say so<br>' +
     '&#8226 Type your answer (at least 15 characters) in the box below to continue<br>'
   //Prep data
-  examples = zendo_cases[rand_trial].t.slice(0, 1);
-  test_cases = zendo_cases[rand_trial].t.slice(1).concat(zendo_cases[rand_trial].f.slice(1));
+  examples = zendo_cases[rules_idx_in_zendo_cases[rand_trial]].t.slice(0, 1);
+  test_cases = zendo_cases[rules_idx_in_zendo_cases[rand_trial]].t.slice(1).concat(zendo_cases[rand_trial].f.slice(1));
 
   // start iframe from here if this is not the first trial (if it's the first trial, iframe starts from groupchat)
   trial_num = (5 - trials_order.length);
