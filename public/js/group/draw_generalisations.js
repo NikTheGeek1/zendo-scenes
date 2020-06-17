@@ -15,12 +15,12 @@ function draw_generalisations(data, hovered, div_id) {
   user = div_id.slice(0, 3);
   td = data;
   hovered = hovered;
-  if(user === 'you'){
+  if (user === 'you') {
     tick_color = 'green';
-  }else{
+  } else {
     tick_color = 'red';
   }
-  var pixel_ratio =  window.devicePixelRatio;
+  var pixel_ratio = window.devicePixelRatio;
   ratio = 100 * pixel_ratio; //1 meter == 100 pixels (worry about pixel_ratio later!)
 
   var f3 = new TextFormat("Helvetica-Light", 60 * pixel_ratio, 0x000000, false, false, "left");
@@ -36,159 +36,152 @@ function draw_generalisations(data, hovered, div_id) {
   mr_h = 1;
   lr_h = 1;
 
-  all_points = {small:{
-                      rhs:[{x: 0.2/sr_w, y: 0/sr_h}, {x: 0.3/sr_w, y: 0/sr_h}, {x: 0.05/sr_w, y:0.667/sr_h}, {x: -0.05/sr_w, y:0.667/sr_h}],
-                      lhs:[{x: -0.2/sr_w, y: 0/sr_h}, {x: -0.3/sr_w, y: 0/sr_h}, {x: -0.05/sr_w, y:0.667/sr_h}, {x: 0.05/sr_w, y:0.667/sr_h}]
-                      },
+  all_points = {
+    small: {
+      rhs: [{ x: 0.2 / sr_w, y: 0 / sr_h }, { x: 0.3 / sr_w, y: 0 / sr_h }, { x: 0.05 / sr_w, y: 0.667 / sr_h }, { x: -0.05 / sr_w, y: 0.667 / sr_h }],
+      lhs: [{ x: -0.2 / sr_w, y: 0 / sr_h }, { x: -0.3 / sr_w, y: 0 / sr_h }, { x: -0.05 / sr_w, y: 0.667 / sr_h }, { x: 0.05 / sr_w, y: 0.667 / sr_h }]
+    },
 
-                  med:{
-                      rhs:[{x: 0.3/mr_w, y: 0/mr_h}, {x: 0.4/mr_w, y: 0/mr_h}, {x: 0.05/mr_w, y:1/mr_h}, {x: -0.05/mr_w, y:1/mr_h}],
-                      lhs:[{x: -0.3/mr_w, y: 0/mr_h}, {x: -0.4/mr_w, y: 0/mr_h}, {x: -0.05/mr_w, y:1/mr_h}, {x: 0.05/mr_w, y:1/mr_h}]
-                      },
+    med: {
+      rhs: [{ x: 0.3 / mr_w, y: 0 / mr_h }, { x: 0.4 / mr_w, y: 0 / mr_h }, { x: 0.05 / mr_w, y: 1 / mr_h }, { x: -0.05 / mr_w, y: 1 / mr_h }],
+      lhs: [{ x: -0.3 / mr_w, y: 0 / mr_h }, { x: -0.4 / mr_w, y: 0 / mr_h }, { x: -0.05 / mr_w, y: 1 / mr_h }, { x: 0.05 / mr_w, y: 1 / mr_h }]
+    },
 
-                  large:{
-                      rhs:[{x: 0.4/lr_w, y: 0/lr_h}, {x: 0.5/lr_w, y: 0/lr_h}, {x: 0.05/lr_w, y:1.333/lr_h}, {x: -0.05/lr_w, y:1.333/lr_h}],
-                      lhs:[{x: -0.4/lr_w, y: 0/lr_h}, {x: -0.5/lr_w, y: 0/lr_h}, {x: -0.05/lr_w, y:1.333/lr_h}, {x: 0.05/lr_w, y:1.333/lr_h}]
-                      }
-              };
+    large: {
+      rhs: [{ x: 0.4 / lr_w, y: 0 / lr_h }, { x: 0.5 / lr_w, y: 0 / lr_h }, { x: 0.05 / lr_w, y: 1.333 / lr_h }, { x: -0.05 / lr_w, y: 1.333 / lr_h }],
+      lhs: [{ x: -0.4 / lr_w, y: 0 / lr_h }, { x: -0.5 / lr_w, y: 0 / lr_h }, { x: -0.05 / lr_w, y: 1.333 / lr_h }, { x: 0.05 / lr_w, y: 1.333 / lr_h }]
+    }
+  };
 
-      function DrawHistory(td, phase)
-      {
-          //console.log('drawing history');
-          //test_count = test_count + 1
-          //bn = emit_waves[test_count];
-      //phase = 3
-             t = test_count;
+  function DrawHistory(td, phase) {
+    //console.log('drawing history');
+    //test_count = test_count + 1
+    //bn = emit_waves[test_count];
+    //phase = 3
+    t = test_count;
 
-          //bn = CurrentRule(td[t]);
+    //bn = CurrentRule(td[t]);
 
-          var trial_pic = new Sprite();
+    var trial_pic = new Sprite();
 
-          trial_pics.push(trial_pic);
-          var frame_height=.75;
+    trial_pics.push(trial_pic);
+    var frame_height = .75;
 
-          //console.log('drawing history', frame_height);
-          //Frame
-          trial_pics[t].graphics.lineStyle(5, 0x777777);
-          trial_pics[t].graphics.moveTo(0, 0);
-          trial_pics[t].graphics.lineTo(stage.stageWidth, 0);
-          trial_pics[t].graphics.lineTo(stage.stageWidth, stage.stageHeight*frame_height);
-          trial_pics[t].graphics.lineTo(0, stage.stageHeight*frame_height);
-          trial_pics[t].graphics.endFill();
+    //console.log('drawing history', frame_height);
+    //Frame
+    trial_pics[t].graphics.lineStyle(5, 0x777777);
+    trial_pics[t].graphics.moveTo(0, 0);
+    trial_pics[t].graphics.lineTo(stage.stageWidth - 2, 0);
+    trial_pics[t].graphics.lineTo(stage.stageWidth - 2, stage.stageHeight * frame_height);
+    trial_pics[t].graphics.lineTo(0, stage.stageHeight * frame_height);
+    trial_pics[t].graphics.endFill();
 
-          //Floor
-          trial_pics[t].graphics.beginFill(0x926239, 0.3);
-          trial_pics[t].graphics.drawRect(0,(stage.stageHeight*frame_height) - stage.stageHeight/6, stage.stageWidth, stage.stageHeight/6);
-          trial_pics[t].graphics.endFill();
-          trial_pics[t].graphics.beginFill(0x000000, 0.7);
-          trial_pics[t].graphics.drawRect(0,(stage.stageHeight*frame_height) - stage.stageHeight/6, stage.stageWidth, 0.05*(stage.stageHeight/6));
-          trial_pics[t].graphics.endFill();
+    //Floor
+    trial_pics[t].graphics.beginFill(0x926239, 0.3);
+    trial_pics[t].graphics.drawRect(0, (stage.stageHeight * frame_height) - stage.stageHeight / 6, stage.stageWidth, stage.stageHeight / 6);
+    trial_pics[t].graphics.endFill();
+    trial_pics[t].graphics.beginFill(0x000000, 0.7);
+    trial_pics[t].graphics.drawRect(0, (stage.stageHeight * frame_height) - stage.stageHeight / 6, stage.stageWidth, 0.05 * (stage.stageHeight / 6));
+    trial_pics[t].graphics.endFill();
 
-          var objects = [];
-          //Loop over objects
-          for (i = 0; i<td[t].ids.length; i++)
-          {
+    var objects = [];
+    //Loop over objects
+    for (i = 0; i < td[t].ids.length; i++) {
 
-              if (td[t].colours[i]==='red') {col=cols[0];}
-              else if (td[t].colours[i]==='green') {col=cols[1];}
-              else if (td[t].colours[i]==='blue') {col=cols[2];}
+      if (td[t].colours[i] === 'red') { col = cols[0]; }
+      else if (td[t].colours[i] === 'green') { col = cols[1]; }
+      else if (td[t].colours[i] === 'blue') { col = cols[2]; }
 
-              if (td[t].sizes[i]==1) {raw_points=all_points.small;}
-              else if (td[t].sizes[i]==2) {raw_points=all_points.med;}
-              else if (td[t].sizes[i]==3) {raw_points=all_points.large;}
+      if (td[t].sizes[i] == 1) { raw_points = all_points.small; }
+      else if (td[t].sizes[i] == 2) { raw_points = all_points.med; }
+      else if (td[t].sizes[i] == 3) { raw_points = all_points.large; }
 
-              //console.log('raw_points', raw_points, 'col',col);
+      //console.log('raw_points', raw_points, 'col',col);
 
 
-              objects.push(new Sprite());
+      objects.push(new Sprite());
 
-              //Right hand side
-              objects[i].graphics.beginFill(col, 0.5);
-              // obj.graphics.drawRect(-hw*ratio,-hh*ratio,2*hw*ratio,2*hh*ratio);
-              objects[i].graphics.moveTo(raw_points.rhs[0].x*ratio, raw_points.rhs[0].y*ratio);
-              for (var j=1; j<raw_points.rhs.length; j++)
-              {
-                objects[i].graphics.lineTo(raw_points.rhs[j].x*ratio, raw_points.rhs[j].y*ratio);
-              }
-              objects[i].graphics.endFill();
+      //Right hand side
+      objects[i].graphics.beginFill(col, 0.5);
+      // obj.graphics.drawRect(-hw*ratio,-hh*ratio,2*hw*ratio,2*hh*ratio);
+      objects[i].graphics.moveTo(raw_points.rhs[0].x * ratio, raw_points.rhs[0].y * ratio);
+      for (var j = 1; j < raw_points.rhs.length; j++) {
+        objects[i].graphics.lineTo(raw_points.rhs[j].x * ratio, raw_points.rhs[j].y * ratio);
+      }
+      objects[i].graphics.endFill();
 
-              //Left hand side
-              objects[i].graphics.beginFill(col, 0.5);
+      //Left hand side
+      objects[i].graphics.beginFill(col, 0.5);
 
-              objects[i].graphics.moveTo(raw_points.lhs[0].x*ratio, raw_points.lhs[0].y*ratio);
-              for (var j=1; j<raw_points.rhs.length; j++)
-              {
-                  objects[i].graphics.lineTo(raw_points.lhs[j].x*ratio, raw_points.lhs[j].y*ratio);
-              }
-              objects[i].graphics.endFill();
+      objects[i].graphics.moveTo(raw_points.lhs[0].x * ratio, raw_points.lhs[0].y * ratio);
+      for (var j = 1; j < raw_points.rhs.length; j++) {
+        objects[i].graphics.lineTo(raw_points.lhs[j].x * ratio, raw_points.lhs[j].y * ratio);
+      }
+      objects[i].graphics.endFill();
 
-              //Surface
-              objects[i].graphics.beginFill(col, 0.1);
+      //Surface
+      objects[i].graphics.beginFill(col, 0.1);
 
-              objects[i].graphics.moveTo(raw_points.rhs[1].x*ratio, raw_points.rhs[1].y*ratio);
+      objects[i].graphics.moveTo(raw_points.rhs[1].x * ratio, raw_points.rhs[1].y * ratio);
 
-              objects[i].graphics.lineTo(raw_points.rhs[2].x*ratio, raw_points.rhs[2].y*ratio);
-              objects[i].graphics.lineTo(raw_points.lhs[2].x*ratio, raw_points.lhs[2].y*ratio);
-              objects[i].graphics.lineTo(raw_points.lhs[1].x*ratio, raw_points.lhs[1].y*ratio);
+      objects[i].graphics.lineTo(raw_points.rhs[2].x * ratio, raw_points.rhs[2].y * ratio);
+      objects[i].graphics.lineTo(raw_points.lhs[2].x * ratio, raw_points.lhs[2].y * ratio);
+      objects[i].graphics.lineTo(raw_points.lhs[1].x * ratio, raw_points.lhs[1].y * ratio);
 
-              objects[i].graphics.endFill();
-              trial_pics[t].addChild(objects[i]);
+      objects[i].graphics.endFill();
+      trial_pics[t].addChild(objects[i]);
 
-              objects[i].x = ratio*td[t].xpos[i];
-              objects[i].y = ratio*td[t].ypos[i] - (stage.stageHeight*(1-frame_height));
-              objects[i].rotation = td[t].rotations[i]*180/Math.PI;
-              //console.log(objects[i]);
-          }
+      objects[i].x = ratio * td[t].xpos[i];
+      objects[i].y = ratio * td[t].ypos[i] - (stage.stageHeight * (1 - frame_height));
+      objects[i].rotation = td[t].rotations[i] * 180 / Math.PI;
+      //console.log(objects[i]);
+    }
 
-          if (phase < 3)
-          {
-            if (td[t].follow_rule===true)
-            {
-                var bd  = new BitmapData('/images/star2.png');//tick.png');
+    if (phase < 3) {
+      if (td[t].follow_rule === true) {
+        var bd = new BitmapData('/images/star2.png');//tick.png');
 
-            } else if (td[t].follow_rule===false)
-            {
-                var bd = new BitmapData('/images/whitestar.png');//cross.png');
-            }
-          objects.push(new Bitmap(bd));
-          trial_pics[t].addChild(objects[objects.length-1]);
-          objects[objects.length-1].x=stage.stageWidth*(8/10);
-          objects[objects.length-1].y=stage.stageHeight*(1/10);
-          objects[objects.length-1].scaleX=objects[objects.length-1].scaleY=0.5 * window.devicePixelRatio;
+      } else if (td[t].follow_rule === false) {
+        var bd = new BitmapData('/images/whitestar.png');//cross.png');
+      }
+      objects.push(new Bitmap(bd));
+      trial_pics[t].addChild(objects[objects.length - 1]);
+      objects[objects.length - 1].x = stage.stageWidth * (8 / 10);
+      objects[objects.length - 1].y = stage.stageHeight * (1 / 10);
+      objects[objects.length - 1].scaleX = objects[objects.length - 1].scaleY = 0.5 * window.devicePixelRatio;
 
-          var w3 = new TextField();
-            w3.selectable = false; // default is true
-            w3.setTextFormat(f3);
+      var w3 = new TextField();
+      w3.selectable = false; // default is true
+      w3.setTextFormat(f3);
 
-            if (test_count==0)
-            {
-              w3.text = test_count + '.  (example)';
-            } else {
-              w3.text = test_count + '.';
-            }
-          w3.width = w3.textWidth;
-            w3.height = w3.textHeight;
-            trial_pics[t].addChild(w3);
-            w3.x = stage.stageWidth/20;
-            w3.y = stage.stageHeight/20;
+      if (test_count == 0) {
+        w3.text = test_count + '.  (example)';
+      } else {
+        w3.text = test_count + '.';
+      }
+      w3.width = w3.textWidth;
+      w3.height = w3.textHeight;
+      trial_pics[t].addChild(w3);
+      w3.x = stage.stageWidth / 20;
+      w3.y = stage.stageHeight / 20;
 
-              stage.addChild(trial_pics[t]);
+      stage.addChild(trial_pics[t]);
 
-              console.log('testing stage width for constancy:', stage.stageWidth, trial_pics[t].width, 'pic t:', t);
-            if(hovered){
-              trial_pics[t].width = trial_pics[t].width/4;//stage.stageWidth/4;
-              trial_pics[t].height = trial_pics[t].height/4;//(stage.stageHeight*frame_height)/4;
-              trial_pics[t].x=(t%4)*(stage.stageWidth/4);
-              trial_pics[t].y=Math.floor(t/4)*((stage.stageHeight*frame_height)/4);
+      console.log('testing stage width for constancy:', stage.stageWidth, trial_pics[t].width, 'pic t:', t);
+      if (hovered) {
+        trial_pics[t].width = trial_pics[t].width / 4;//stage.stageWidth/4;
+        trial_pics[t].height = trial_pics[t].height / 4;//(stage.stageHeight*frame_height)/4;
+        trial_pics[t].x = (t % 4) * (stage.stageWidth / 4);
+        trial_pics[t].y = Math.floor(t / 4) * ((stage.stageHeight * frame_height) / 4);
 
-            } else {
-              trial_pics[t].width = trial_pics[t].width/8;//stage.stageWidth/4;
-              trial_pics[t].height = trial_pics[t].height/4*.8;//(stage.stageHeight*frame_height)/4;
-              trial_pics[t].x=(t%4)*(stage.stageWidth/8);
-              trial_pics[t].y=Math.floor(t/4)*((stage.stageHeight*frame_height)/4);
-            }
-                    }
-      }//Draw history
+      } else {
+        trial_pics[t].width = trial_pics[t].width / 8;//stage.stageWidth/4;
+        trial_pics[t].height = trial_pics[t].height / 4 * .8;//(stage.stageHeight*frame_height)/4;
+        trial_pics[t].x = (t % 4) * (stage.stageWidth / 8);
+        trial_pics[t].y = Math.floor(t / 4) * ((stage.stageHeight * frame_height) / 4);
+      }
+    }
+  }//Draw history
 
 
 
@@ -197,16 +190,16 @@ function draw_generalisations(data, hovered, div_id) {
 
     if (test_count < 8) {
       var phase = 1;
-    }else{
+    } else {
       var phase = 3;
     }
 
-  DrawHistory(td, phase);
+    DrawHistory(td, phase);
 
   } // outter for Loop
-// parent.document.getElementById(div_id).width = 390;
-// parent.document.getElementById(div_id).height = 196;
-// parent.document.getElementById(div_id).style.border = "none";
+  // parent.document.getElementById(div_id).width = 390;
+  // parent.document.getElementById(div_id).height = 196;
+  // parent.document.getElementById(div_id).style.border = "none";
 
 
 }
