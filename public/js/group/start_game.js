@@ -147,7 +147,7 @@ function StartIframe2() {
 
 
     }
-  } else if (trial_num === 6) {// closing of if statement
+  } else if (trial_num === 0) {// closing of if statement
     // display debriefing
     document.getElementById('debrief').style.display = "block";
     document.getElementById('game').style.display = "none";
